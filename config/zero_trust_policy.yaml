@@ -1,0 +1,23 @@
+policy:
+  policy_id: zt-healthcare-v1
+  active: true
+  trust_state_allowed_services:
+    TRUSTED: [edge_telemetry, fog_telemetry, cloud_telemetry]
+    SUSPICIOUS: [edge_telemetry]
+    REVOKED: []
+resources:
+  edge_a: {tenant_id: A, destination_ip: 10.1.1.10, service: edge_telemetry, port: 8443}
+  fog_a: {tenant_id: A, destination_ip: 10.1.2.11, service: fog_telemetry, port: 9443}
+  fog_a_diagnostic: {tenant_id: A, destination_ip: 10.1.2.11, service: fog_diagnostic, port: 9555}
+  cloud_a: {tenant_id: A, destination_ip: 10.1.3.11, service: cloud_telemetry, port: 10443}
+  edge_b: {tenant_id: B, destination_ip: 10.2.1.10, service: edge_telemetry, port: 8443}
+  fog_b: {tenant_id: B, destination_ip: 10.2.2.11, service: fog_telemetry, port: 9443}
+  fog_b_diagnostic: {tenant_id: B, destination_ip: 10.2.2.11, service: fog_diagnostic, port: 9555}
+  cloud_b: {tenant_id: B, destination_ip: 10.2.3.11, service: cloud_telemetry, port: 10443}
+identities:
+  iotA1: {tenant_id: A, device_type: ECG, ip_address: 10.1.1.11, identity_status: active, authorization_status: authorized, trust_state: TRUSTED, allowed_services: [edge_telemetry, fog_telemetry, cloud_telemetry]}
+  iotA2: {tenant_id: A, device_type: Blood Pressure, ip_address: 10.1.1.12, identity_status: active, authorization_status: authorized, trust_state: TRUSTED, allowed_services: [edge_telemetry, fog_telemetry, cloud_telemetry]}
+  iotA3: {tenant_id: A, device_type: SpO2, ip_address: 10.1.1.13, identity_status: active, authorization_status: authorized, trust_state: TRUSTED, allowed_services: [edge_telemetry, fog_telemetry, cloud_telemetry]}
+  iotB1: {tenant_id: B, device_type: ECG, ip_address: 10.2.1.11, identity_status: active, authorization_status: authorized, trust_state: TRUSTED, allowed_services: [edge_telemetry, fog_telemetry, cloud_telemetry]}
+  iotB2: {tenant_id: B, device_type: Blood Pressure, ip_address: 10.2.1.12, identity_status: active, authorization_status: authorized, trust_state: TRUSTED, allowed_services: [edge_telemetry, fog_telemetry, cloud_telemetry]}
+  iotB3: {tenant_id: B, device_type: Temperature, ip_address: 10.2.1.13, identity_status: active, authorization_status: authorized, trust_state: TRUSTED, allowed_services: [edge_telemetry, fog_telemetry, cloud_telemetry]}

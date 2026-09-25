@@ -1,0 +1,4 @@
+path,phase1_mean_rtt_ms,zerotrust_mean_rtt_ms,phase1_source,zerotrust_source
+edge,8.9765,10.296666666666667,results/mininet/mininet_edge_latency.csv,zerotrust_edge_latency.csv
+fog,43.470333333333336,43.029666666666664,results/mininet/mininet_fog_latency.csv,zerotrust_fog_latency.csv
+cloud,147.82716666666667,147.93133333333333,results/mininet/mininet_end_to_end_latency.csv,zerotrust_cloud_latency.csv

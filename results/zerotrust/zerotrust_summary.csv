@@ -1,0 +1,2 @@
+requests,allowed,denied,mean_allowed_network_rtt_ms,mean_policy_decision_latency_ms,cpu_utilization,memory_utilization,security_events
+25,20,5,62.86365,0.021479,0.0,13.4,25

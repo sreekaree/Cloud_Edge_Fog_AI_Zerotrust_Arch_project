@@ -1,0 +1,7 @@
+timestamp_utc,scenario,device_id,tenant_id,source_ip,destination,destination_ip,service,port,decision,reason,trust_state,policy_id,policy_decision_latency_ms,network_rtt_ms,total_request_latency_ms,packet_loss_percent,enforcement
+2026-09-23T06:58:25.082568+00:00,authorized_fog,iotA1,A,10.1.1.11,fog_a,10.1.2.11,fog_telemetry,9443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.033424,47.741,4052.376176,0,none
+2026-09-23T06:58:37.304241+00:00,authorized_fog,iotA2,A,10.1.1.12,fog_a,10.1.2.11,fog_telemetry,9443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.014548,40.875,4050.352791,0,none
+2026-09-23T06:58:49.529658+00:00,authorized_fog,iotA3,A,10.1.1.13,fog_a,10.1.2.11,fog_telemetry,9443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.016402,40.716,4052.805419,0,none
+2026-09-23T06:59:01.745369+00:00,authorized_fog,iotB1,B,10.2.1.11,fog_b,10.2.2.11,fog_telemetry,9443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.01571,47.305,4045.475344,0,none
+2026-09-23T06:59:13.971865+00:00,authorized_fog,iotB2,B,10.2.1.12,fog_b,10.2.2.11,fog_telemetry,9443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.021471,40.845,4055.554296,0,none
+2026-09-23T06:59:26.195683+00:00,authorized_fog,iotB3,B,10.2.1.13,fog_b,10.2.2.11,fog_telemetry,9443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.015279,40.696,4051.249435,0,none

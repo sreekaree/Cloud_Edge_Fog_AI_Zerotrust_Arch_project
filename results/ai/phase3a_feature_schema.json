@@ -1,0 +1,37 @@
+{
+  "dataset_version": "phase3a-v1",
+  "fields": [
+    "record_id",
+    "timestamp_utc",
+    "experiment_id",
+    "source_device",
+    "tenant_id",
+    "source_ip",
+    "destination",
+    "destination_ip",
+    "protocol",
+    "service",
+    "port",
+    "packet_count",
+    "flow_duration_ms",
+    "flow_rate_pps",
+    "connection_frequency_60s",
+    "network_rtt_ms",
+    "packet_loss_percent",
+    "policy_decision_latency_ms",
+    "decision",
+    "trust_state",
+    "enforcement",
+    "scenario",
+    "label",
+    "label_basis"
+  ],
+  "excluded_features": {
+    "bytes_transferred": "Not present in the existing Phase 2 event log; intentionally not inferred.",
+    "tcp_flags": "Phase 2 uses ICMP probes, not TCP flows."
+  },
+  "measurement_notes": {
+    "packet_count": "Fixed 5-request ICMP probe used by the Phase 2 runner.",
+    "network_rtt_ms": "Observed ping RTT; blank for enforced denied requests."
+  }
+}

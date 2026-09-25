@@ -1,0 +1,7 @@
+timestamp_utc,scenario,device_id,tenant_id,source_ip,destination,destination_ip,service,port,decision,reason,trust_state,policy_id,policy_decision_latency_ms,network_rtt_ms,total_request_latency_ms,packet_loss_percent,enforcement
+2026-09-23T06:58:21.029815+00:00,authorized_edge,iotA1,A,10.1.1.11,edge_a,10.1.1.10,edge_telemetry,8443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.025698,10.466,4028.244683,0,none
+2026-09-23T06:58:33.253829+00:00,authorized_edge,iotA2,A,10.1.1.12,edge_a,10.1.1.10,edge_telemetry,8443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.015369,10.314,4020.703329,0,none
+2026-09-23T06:58:45.476785+00:00,authorized_edge,iotA3,A,10.1.1.13,edge_a,10.1.1.10,edge_telemetry,8443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.014879,10.297,4019.273429,0,none
+2026-09-23T06:58:57.699823+00:00,authorized_edge,iotB1,B,10.2.1.11,edge_b,10.2.1.10,edge_telemetry,8443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.014888,10.183,4019.870449,0,none
+2026-09-23T06:59:09.916171+00:00,authorized_edge,iotB2,B,10.2.1.12,edge_b,10.2.1.10,edge_telemetry,8443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.014869,10.201,4019.863876,0,none
+2026-09-23T06:59:22.144314+00:00,authorized_edge,iotB3,B,10.2.1.13,edge_b,10.2.1.10,edge_telemetry,8443,ALLOW,allowed,TRUSTED,zt-healthcare-v1,0.019828,10.319,4019.503554,0,none

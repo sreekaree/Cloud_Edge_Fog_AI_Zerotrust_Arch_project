@@ -1,0 +1,22 @@
+pipeline:
+  dataset_version: phase3a-v1
+  source_events: results/zerotrust/zerotrust_security_events.csv
+  output_directory: results/ai
+  frequency_window_seconds: 60
+  packets_per_icmp_probe: 5
+labels:
+  normal_scenarios: [authorized_edge, authorized_fog, authorized_cloud, revocation_before, temporary_privilege_active]
+  anomalous_scenarios: [cross_tenant, revocation_after, unauthorized_service, suspicious_state, temporary_privilege_removed]
+scenarios:
+  normal_iomt_monitoring: "Authorized tenant-local telemetry requests observed in the real Phase 2 run."
+  tenant_boundary_violation: "Controlled cross-tenant request, denied and enforced in Mininet."
+  revoked_identity: "Controlled request after deterministic device revocation."
+  unauthorized_service: "Controlled Fog diagnostic service request without temporary privilege."
+  suspicious_state: "Controlled request from a device changed to SUSPICIOUS."
+  temporary_privilege_expired: "Controlled Fog diagnostic request after temporary privilege removal."
+pending_controlled_scenarios:
+  elevated_request_rate: "Repeat authorized telemetry probes at a configured bounded rate and label only after real Mininet collection."
+  repeated_service_probe: "Repeat an unauthorized configured service request; no arbitrary ports or external targets."
+excluded_features:
+  bytes_transferred: "Not present in the existing Phase 2 event log; intentionally not inferred."
+  tcp_flags: "Phase 2 uses ICMP probes, not TCP flows."

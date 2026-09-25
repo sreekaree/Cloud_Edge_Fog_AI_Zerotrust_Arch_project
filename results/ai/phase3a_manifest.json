@@ -1,0 +1,10 @@
+{
+  "source_file": "C:\\Users\\TRIPU\\OneDrive\\Documents\\ChatGPT\\CN\\results\\zerotrust\\zerotrust_security_events.csv",
+  "source_sha256": "be661040b7eb0aba74a098195075c96af11d7fbc1319882a9b7fd7119ed5238b",
+  "records": 25,
+  "label_counts": {
+    "normal": 20,
+    "anomalous": 5
+  },
+  "dataset_sha256": "284b1b5933c86f0fffd5a912a4ee3c2f019585b441c4b67097e04824d949cdd4"
+}

@@ -1,0 +1,31 @@
+source,destination,destination_ip,packets_sent,packets_received,packet_loss_percent,mean_rtt_ms,raw_output
+iotA1,cloud_baseline,10.10.1.10,5,5,0,188.372,"PING 10.10.1.10 (10.10.1.10) 56(84) bytes of data.
+
+--- 10.10.1.10 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 3997ms
+rtt min/avg/max/mdev = 187.170/188.372/190.908/1.318 ms"
+iotA2,cloud_baseline,10.10.1.10,5,5,0,188.257,"PING 10.10.1.10 (10.10.1.10) 56(84) bytes of data.
+
+--- 10.10.1.10 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 3997ms
+rtt min/avg/max/mdev = 187.063/188.257/189.599/1.017 ms"
+iotA3,cloud_baseline,10.10.1.10,5,5,0,188.552,"PING 10.10.1.10 (10.10.1.10) 56(84) bytes of data.
+
+--- 10.10.1.10 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 3998ms
+rtt min/avg/max/mdev = 186.055/188.552/191.572/1.898 ms"
+iotB1,cloud_baseline,10.10.2.10,5,5,0,187.360,"PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+
+--- 10.10.2.10 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 3996ms
+rtt min/avg/max/mdev = 186.471/187.360/188.481/0.670 ms"
+iotB2,cloud_baseline,10.10.2.10,5,5,0,188.050,"PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+
+--- 10.10.2.10 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 3997ms
+rtt min/avg/max/mdev = 185.751/188.050/189.897/1.565 ms"
+iotB3,cloud_baseline,10.10.2.10,5,5,0,187.713,"PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+
+--- 10.10.2.10 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 3997ms
+rtt min/avg/max/mdev = 186.733/187.713/189.593/0.982 ms"
