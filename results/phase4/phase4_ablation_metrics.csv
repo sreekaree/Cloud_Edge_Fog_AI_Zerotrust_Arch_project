@@ -1,0 +1,7 @@
+device_id,final_score_hybrid,final_score_det_only,final_state_hybrid,final_state_det_only,score_delta,state_match,cum_det_penalty_hybrid,cum_ai_penalty_hybrid,cum_recovery_hybrid,cum_det_penalty_det_only,cum_ai_penalty_det_only,cum_recovery_det_only
+iotA1,0.0,0.0,REVOKED,REVOKED,0.0,True,150.0,2.5,4.0,150.0,0.0,8.0
+iotA2,0.0,0.0,REVOKED,REVOKED,0.0,True,157.5,23.17,0.0,157.5,0.0,6.0
+iotA3,100.0,100.0,TRUSTED,TRUSTED,0.0,True,0.0,0.0,6.0,0.0,0.0,6.0
+iotB1,100.0,100.0,TRUSTED,TRUSTED,0.0,True,0.0,0.0,6.0,0.0,0.0,6.0
+iotB2,100.0,100.0,TRUSTED,TRUSTED,0.0,True,0.0,0.0,6.0,0.0,0.0,6.0
+iotB3,100.0,100.0,TRUSTED,TRUSTED,0.0,True,0.0,0.0,6.0,0.0,0.0,6.0

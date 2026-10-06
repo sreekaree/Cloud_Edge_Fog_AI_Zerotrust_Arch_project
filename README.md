@@ -138,3 +138,48 @@ python3 experiments/run_phase3a_pipeline.py
 ```
 
 It writes `phase3a_iomt_anomaly_dataset.csv`, a feature-schema JSON file, and a source/dataset hash manifest to `results/ai/`. This phase contains no blockchain or adaptive orchestration functionality.
+
+## Phase 3B — AI Anomaly Detection Model
+
+Phase 3B trains and evaluates an anomaly detection model using the frozen Phase 3A dataset. To ensure scientific defensibility, it enforces strict leakage controls: all post-enforcement artifacts (iptables packet drop loss, ping timeout durations, missing RTT values) and policy engine decisions are withheld from model inputs.
+
+Input features comprise observable request attributes (`tenant_id`, `source_device`, `destination`, `service`, `port`, `connection_frequency_60s`) and engineered domain relations (`is_cross_tenant`, `is_diagnostic_service`).
+
+Candidate models (Random Forest, Decision Tree, Logistic Regression) are evaluated via Stratified 5-Fold Cross-Validation. In addition to discrete classifications, the models generate continuous anomaly probability scores $[0.0, 1.0]$ for downstream input to the Phase 4 Zero Trust dynamic trust engine.
+
+Run the Phase 3B pipeline:
+
+```bash
+python experiments/run_phase3b_model.py
+```
+
+Outputs written to `results/ai/`:
+- `phase3b_model_metrics.csv` (Cross-validation metrics)
+- `phase3b_predictions.csv` (Out-of-fold and full anomaly scores)
+- `phase3b_feature_importance.csv` (Feature importances / coefficients)
+- `phase3b_model_manifest.json` (Provenance manifest with dataset SHA-256 and hyper-parameters)
+- Visualizations in `plots/ai/`
+
+## Phase 4 — AI-Driven Dynamic Trust Scoring Engine
+
+Phase 4 implements continuous, AI-driven dynamic trust scoring ($T \in [0.0, 100.0]$) where deterministic Zero Trust policy enforcement strictly dominates security boundaries while auxiliary out-of-fold AI anomaly scores from Phase 3B modulate trust degradation and recovery velocity.
+
+Key architectural features:
+- **AI-Only Trust Floor ($T \ge 70.0$):** High AI anomaly scores cannot push a compliant device into `RESTRICTED` without a deterministic policy violation.
+- **Operational Dynamic States:** `TRUSTED` ($70.0 \le T \le 100.0$, normal ALLOW), `RESTRICTED` ($30.0 \le T < 70.0$, Edge telemetry allowed, Fog/Cloud denied), and `REVOKED` ($0.0 \le T < 30.0$, total network isolation).
+- **Decay & Recovery:** Compliant events in `RESTRICTED` decay violation counters by 1 and earn $+2.0$ recovery until reaching `TRUSTED`; returning to `TRUSTED` resets $N_{\text{viol}} \leftarrow 0$.
+- **Policy Engine Adapter:** Continuous `RESTRICTED` state maps to Phase 2 `TrustState.SUSPICIOUS`, verified against the live `PolicyEngine`.
+- **Ablation Arm:** Compares hybrid scoring against a deterministic-only baseline ($P_{\text{ai}} \equiv 0.0$), confirming identical state transitions while quantifying AI risk modulation.
+
+Run the Phase 4 offline replay and ablation experiment:
+
+```bash
+python experiments/run_phase4_trust_replay.py
+```
+
+Outputs written to `results/phase4/` and `plots/phase4/`:
+- `results/phase4/phase4_trust_trace.csv` (25-event chronological audit replay trace)
+- `results/phase4/phase4_ablation_metrics.csv` (Hybrid vs Deterministic-only comparative metrics)
+- `plots/phase4/phase4_trust_trajectories.png` (Continuous trust score trajectory visualizations)
+
+

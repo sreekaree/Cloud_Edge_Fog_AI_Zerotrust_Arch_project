@@ -1,0 +1,26 @@
+event_index,record_id,source_device,scenario,p2_decision,p2_reason,jit_status,severity,oof_score,p_det,p_ai,p_total,rec,trust_before,trust_after,state_before,state_after,mapped_phase2_state,n_viol_before,n_viol_after,action_taken
+0,fe9d845eac4fcde3,iotA1,authorized_edge,ALLOW,allowed,Inactive,NONE,0.4399,0.0,1.33,1.33,0.0,100.0,98.67,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+1,428da8f2858b5a7e,iotA1,authorized_fog,ALLOW,allowed,Inactive,NONE,0.265,0.0,0.0,0.0,2.0,98.67,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+2,b4a837a09015f28d,iotA1,authorized_cloud,ALLOW,allowed,Inactive,NONE,0.2086,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+3,2aa87a9674881cd8,iotA2,authorized_edge,ALLOW,allowed,Inactive,NONE,0.4436,0.0,1.45,1.45,0.0,100.0,98.55,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+4,d6c31384cb7a85d0,iotA2,authorized_fog,ALLOW,allowed,Inactive,NONE,0.5616,0.0,5.39,5.39,0.0,98.55,93.16,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+5,61a4939fe68f7a02,iotA2,authorized_cloud,ALLOW,allowed,Inactive,NONE,0.4069,0.0,0.23,0.23,0.0,93.16,92.93,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+6,4d2286dab220e3a4,iotA3,authorized_edge,ALLOW,allowed,Inactive,NONE,0.2034,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+7,6a3174e35f4d7e74,iotA3,authorized_fog,ALLOW,allowed,Inactive,NONE,0.2372,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+8,35b945008f2f90fc,iotA3,authorized_cloud,ALLOW,allowed,Inactive,NONE,0.1265,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+9,608ca3a7e05e7ec2,iotB1,authorized_edge,ALLOW,allowed,Inactive,NONE,0.0844,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+10,affdc88e488ca5c7,iotB1,authorized_fog,ALLOW,allowed,Inactive,NONE,0.0431,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+11,593048a56f8621ae,iotB1,authorized_cloud,ALLOW,allowed,Inactive,NONE,0.0552,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+12,e8a0e613d0f5146e,iotB2,authorized_edge,ALLOW,allowed,Inactive,NONE,0.2319,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+13,7769a385c8b6e762,iotB2,authorized_fog,ALLOW,allowed,Inactive,NONE,0.0713,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+14,47f4f344bc6b826b,iotB2,authorized_cloud,ALLOW,allowed,Inactive,NONE,0.0969,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+15,0c8ffc07a04a2962,iotB3,authorized_edge,ALLOW,allowed,Inactive,NONE,0.2592,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+16,c577f5b33d78af6c,iotB3,authorized_fog,ALLOW,allowed,Inactive,NONE,0.1059,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+17,6739ed2704099f49,iotB3,authorized_cloud,ALLOW,allowed,Inactive,NONE,0.047,0.0,0.0,0.0,2.0,100.0,100.0,TRUSTED,TRUSTED,TRUSTED,0,0,ALLOW
+18,6c905147705120e0,iotA1,cross_tenant,DENY,cross_tenant_denied,Inactive,CRITICAL,0.227,50.0,0.0,50.0,0.0,100.0,50.0,TRUSTED,RESTRICTED,SUSPICIOUS,0,1,DENY (cross_tenant_denied)
+19,35117f907999d8b4,iotA1,revocation_before,ALLOW,allowed,Inactive,NONE,0.4351,0.0,1.17,1.17,0.0,50.0,48.83,RESTRICTED,RESTRICTED,SUSPICIOUS,1,0,ALLOW (RESTRICTED: Edge telemetry)
+20,efe6e69631b35fc2,iotA1,revocation_after,DENY,trust_state_revoked,Inactive,CRITICAL,0.3237,100.0,0.0,100.0,0.0,48.83,0.0,RESTRICTED,REVOKED,REVOKED,0,1,DENY (trust_state_revoked)
+21,c35eee4e8b93f25d,iotA2,unauthorized_service,DENY,trust_state_trusted,Inactive,HIGH,0.433,40.0,1.1,41.1,0.0,92.93,51.83,TRUSTED,RESTRICTED,SUSPICIOUS,0,1,DENY (trust_state_trusted)
+22,83280bb2b66e1ba5,iotA2,suspicious_state,DENY,trust_state_suspicious,Inactive,MEDIUM,0.3631,37.5,0.0,37.5,0.0,51.83,14.33,RESTRICTED,REVOKED,REVOKED,1,2,DENY (trust_state_suspicious)
+23,9793ea313fd615a5,iotA2,temporary_privilege_active,ALLOW,allowed,Active,NONE,0.9295,0.0,0.0,0.0,0.0,14.33,14.33,REVOKED,REVOKED,REVOKED,2,2,DENY (quarantined/revoked)
+24,f9b31e9b94fdae42,iotA2,temporary_privilege_removed,DENY,trust_state_trusted,Inactive,HIGH,0.9295,80.0,15.0,95.0,0.0,14.33,0.0,REVOKED,REVOKED,REVOKED,2,3,DENY (trust_state_trusted)
