@@ -1,0 +1,4 @@
+model,evaluation_method,accuracy,precision,recall,f1_score,roc_auc,true_negatives,false_positives,false_negatives,true_positives
+RandomForest,stratified_5_fold_cv,0.76,0.3333,0.2,0.25,0.725,18,2,4,1
+DecisionTree,stratified_5_fold_cv,0.72,0.25,0.2,0.2222,0.535,17,3,4,1
+LogisticRegression,stratified_5_fold_cv,0.76,0.3333,0.2,0.25,0.58,18,2,4,1

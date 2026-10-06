@@ -1,0 +1,136 @@
+{
+  "model_version": "phase3b-v1",
+  "generated_utc": "2026-10-06T04:27:10.872637+00:00",
+  "dataset_file": "phase3a_iomt_anomaly_dataset.csv",
+  "dataset_sha256": "284b1b5933c86f0fffd5a912a4ee3c2f019585b441c4b67097e04824d949cdd4",
+  "primary_model": "RandomForest",
+  "candidate_models": [
+    "RandomForest",
+    "DecisionTree",
+    "LogisticRegression"
+  ],
+  "evaluation_method": "stratified_5_fold_cross_validation",
+  "random_seed": 42,
+  "features": {
+    "observable_request_features": [
+      "tenant_id",
+      "source_device",
+      "destination",
+      "service",
+      "port",
+      "connection_frequency_60s"
+    ],
+    "engineered_domain_features": [
+      "is_cross_tenant",
+      "is_diagnostic_service"
+    ],
+    "one_hot_encoded_dim": 19,
+    "encoded_feature_names": [
+      "cat__tenant_id_B",
+      "cat__source_device_iotA2",
+      "cat__source_device_iotA3",
+      "cat__source_device_iotB1",
+      "cat__source_device_iotB2",
+      "cat__source_device_iotB3",
+      "cat__destination_cloud_b",
+      "cat__destination_edge_a",
+      "cat__destination_edge_b",
+      "cat__destination_fog_a",
+      "cat__destination_fog_a_diagnostic",
+      "cat__destination_fog_b",
+      "cat__service_edge_telemetry",
+      "cat__service_fog_diagnostic",
+      "cat__service_fog_telemetry",
+      "num__port",
+      "num__connection_frequency_60s",
+      "num__is_cross_tenant",
+      "num__is_diagnostic_service"
+    ]
+  },
+  "leakage_controls": {
+    "excluded_post_enforcement_artifacts": [
+      "decision",
+      "enforcement",
+      "scenario",
+      "experiment_id",
+      "label_basis",
+      "packet_loss_percent",
+      "network_rtt_ms",
+      "flow_duration_ms",
+      "flow_rate_pps",
+      "policy_decision_latency_ms",
+      "trust_state"
+    ],
+    "excluded_identifiers": [
+      "record_id",
+      "timestamp_utc",
+      "source_ip",
+      "destination_ip",
+      "protocol",
+      "packet_count"
+    ]
+  },
+  "metrics_summary": [
+    {
+      "model": "RandomForest",
+      "evaluation_method": "stratified_5_fold_cv",
+      "accuracy": 0.76,
+      "precision": 0.3333,
+      "recall": 0.2,
+      "f1_score": 0.25,
+      "roc_auc": 0.725,
+      "true_negatives": 18,
+      "false_positives": 2,
+      "false_negatives": 4,
+      "true_positives": 1
+    },
+    {
+      "model": "DecisionTree",
+      "evaluation_method": "stratified_5_fold_cv",
+      "accuracy": 0.72,
+      "precision": 0.25,
+      "recall": 0.2,
+      "f1_score": 0.2222,
+      "roc_auc": 0.535,
+      "true_negatives": 17,
+      "false_positives": 3,
+      "false_negatives": 4,
+      "true_positives": 1
+    },
+    {
+      "model": "LogisticRegression",
+      "evaluation_method": "stratified_5_fold_cv",
+      "accuracy": 0.76,
+      "precision": 0.3333,
+      "recall": 0.2,
+      "f1_score": 0.25,
+      "roc_auc": 0.58,
+      "true_negatives": 18,
+      "false_positives": 2,
+      "false_negatives": 4,
+      "true_positives": 1
+    }
+  ],
+  "top_features": [
+    {
+      "feature": "num__connection_frequency_60s",
+      "importance": 0.20957
+    },
+    {
+      "feature": "cat__tenant_id_B",
+      "importance": 0.167241
+    },
+    {
+      "feature": "num__is_cross_tenant",
+      "importance": 0.086677
+    },
+    {
+      "feature": "cat__source_device_iotA2",
+      "importance": 0.078749
+    },
+    {
+      "feature": "num__is_diagnostic_service",
+      "importance": 0.073591
+    }
+  ]
+}

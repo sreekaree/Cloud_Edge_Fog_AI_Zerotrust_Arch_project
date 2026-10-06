@@ -1,0 +1,66 @@
+# MedTrustEdge Phase 3B - AI Anomaly Detection Model Configuration
+model:
+  version: "phase3b-v1"
+  candidate: "random_forest"
+  baselines: ["decision_tree", "logistic_regression"]
+  random_seed: 42
+
+data:
+  dataset_path: "results/ai/phase3a_iomt_anomaly_dataset.csv"
+  manifest_path: "results/ai/phase3a_manifest.json"
+  target_column: "label"
+  positive_class: "anomalous"
+
+features:
+  observable_request_features:
+    - "tenant_id"
+    - "source_device"
+    - "destination"
+    - "service"
+    - "port"
+    - "connection_frequency_60s"
+  engineered_domain_features:
+    - "is_cross_tenant"
+    - "is_diagnostic_service"
+  
+  # Rigorous leakage exclusion specification
+  excluded_leakage_features:
+    decision: "Direct mirror of policy outcome (ALLOW/DENY)"
+    enforcement: "Post-enforcement mechanism (none/iptables_output_icmp_drop)"
+    scenario: "Experimental condition identifier"
+    experiment_id: "Duplicate of scenario"
+    label_basis: "Ground-truth rationale description"
+    packet_loss_percent: "Post-enforcement artifact (100% loss caused by iptables drop)"
+    network_rtt_ms: "Missingness is an artifact of iptables drop"
+    flow_duration_ms: "Downstream timeout artifact (~14s) caused by iptables drop"
+    flow_rate_pps: "Derived directly from flow_duration_ms timeout artifact"
+    policy_decision_latency_ms: "Internal Python execution time of policy engine"
+    trust_state: "Zero Trust policy state; excluded to prevent circular dependency with Phase 4"
+
+  excluded_identifiers:
+    record_id: "Row hash identifier"
+    timestamp_utc: "Wall-clock timestamp"
+    source_ip: "Redundant with source_device"
+    destination_ip: "Redundant with destination"
+    protocol: "Zero variance (always ICMP)"
+    packet_count: "Zero variance (always 5)"
+
+evaluation:
+  method: "stratified_k_fold"
+  n_splits: 5
+  shuffle: true
+
+hyperparameters:
+  random_forest:
+    n_estimators: 100
+    max_depth: 3
+    class_weight: "balanced"
+    random_state: 42
+  decision_tree:
+    max_depth: 3
+    class_weight: "balanced"
+    random_state: 42
+  logistic_regression:
+    max_iter: 500
+    class_weight: "balanced"
+    random_state: 42
