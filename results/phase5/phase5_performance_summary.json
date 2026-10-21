@@ -1,0 +1,31 @@
+{
+  "benchmark_metadata": {
+    "timestamp_utc": "2026-10-15T09:26:13.262456+00:00",
+    "python_version": "3.13.2",
+    "platform_os": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "timer": "time.perf_counter",
+    "memory_profiler": "tracemalloc",
+    "total_benchmark_records": 68
+  },
+  "baseline_real_workload_metrics": {
+    "dataset": "results/phase4/phase4_trust_trace.csv + results/zerotrust/zerotrust_security_events.csv",
+    "total_events": 25,
+    "batch_size": 5,
+    "block_count": 6,
+    "event_adaptation_mean_ms": 2.9114,
+    "ledger_construction_mean_ms": 2.2257,
+    "merkle_root_calc_mean_ms": 0.1973,
+    "full_verification_mean_ms": 7.9477,
+    "verification_without_proofs_mean_ms": 5.6756,
+    "inclusion_proofs_only_mean_ms": 4.0738,
+    "ledger_serialization_mean_ms": 3.4534,
+    "ledger_deserialization_mean_ms": 1.4037
+  },
+  "ablation_findings": {
+    "verification_inclusion_proof_overhead_ratio": 0.5126,
+    "scaling_analysis": "Execution latency for ledger construction and verification scales linearly O(N) with event count under fixed batch size.",
+    "batch_size_tradeoff": "Larger batch sizes reduce total block header count and serialization overhead, while increasing the Merkle tree depth per block log2(B)."
+  },
+  "security_and_distributed_systems_boundary": "All measurements reflect an in-memory, single-node Python implementation on the local host. These benchmarks evaluate cryptographic data structure efficiency (canonical serialization, SHA-256, Merkle trees). They do NOT establish distributed consensus throughput, P2P network gossip latency, or Byzantine fault tolerance."
+}

@@ -1,0 +1,87 @@
+{
+  "validation_timestamp_utc": "2026-10-21T05:41:22.139233+00:00",
+  "overall_status": "SUCCESS",
+  "all_checks_passed": true,
+  "checks": {
+    "step1_protected_files_check": {
+      "passed": true,
+      "files_verified": 7,
+      "details": {
+        "src/zerotrust/dynamic_trust.py": {
+          "status": "MATCH",
+          "hash": "5da36f2ca8d5a997d387a3ef325e3b0ce18ea38bcb45508d5c0e0ed909e8f519"
+        },
+        "results/zerotrust/zerotrust_security_events.csv": {
+          "status": "MATCH",
+          "hash": "be661040b7eb0aba74a098195075c96af11d7fbc1319882a9b7fd7119ed5238b"
+        },
+        "results/ai/phase3a_iomt_anomaly_dataset.csv": {
+          "status": "MATCH",
+          "hash": "284b1b5933c86f0fffd5a912a4ee3c2f019585b441c4b67097e04824d949cdd4"
+        },
+        "results/ai/phase3b_predictions.csv": {
+          "status": "MATCH",
+          "hash": "f2fb282a417d3dbc53c31dde9260961fd4b6c3a7d425d55385023ebfb83a81e6"
+        },
+        "results/phase4/phase4_trust_trace.csv": {
+          "status": "MATCH",
+          "hash": "c214728a41f7dacad9df105128b0a3ea686cf8be76646727fd12381c5c6e428d"
+        },
+        "results/phase4/phase4_ablation_metrics.csv": {
+          "status": "MATCH",
+          "hash": "de5b7fbc0a16571f7dede132be2865f5c58c35bc3de01cbe74b112716474a809"
+        },
+        "tests/test_phase4_dynamic_trust.py": {
+          "status": "MATCH",
+          "hash": "16894519e68dc5faf3da80779afb7f8f43bb4393ed3d484a4266d8a57cf8f581"
+        }
+      }
+    },
+    "step2_event_adaptation_check": {
+      "passed": true,
+      "event_count": 25,
+      "unique_hashes": 25
+    },
+    "step3_ledger_construction_check": {
+      "passed": true,
+      "block_count": 6,
+      "total_event_count": 25,
+      "batch_size": 5
+    },
+    "step4_serialization_roundtrip_check": {
+      "passed": true,
+      "serialized_length_bytes": 28296
+    },
+    "step5_full_verification_check": {
+      "passed": true,
+      "is_valid": true,
+      "error_count": 0,
+      "export_reload_valid": true,
+      "checkpoint_notice": "Internal cryptographic integrity verified. Note: Full protection against complete historical rewrite (fork substitution) requires external checkpoint anchoring."
+    },
+    "step6_inclusion_proofs_check": {
+      "passed": true,
+      "proofs_verified": 25,
+      "total_expected": 25
+    },
+    "step7_tamper_detection_check": {
+      "passed": true,
+      "attacks_simulated": 8,
+      "attacks_detected": 8,
+      "detection_rate_percent": 100.0,
+      "original_ledger_consistent": true
+    },
+    "step8_benchmark_artifacts_check": {
+      "passed": true,
+      "artifacts": {
+        "phase5_performance_benchmarks.csv": "VALID (12407 bytes)",
+        "phase5_performance_summary.json": "VALID (1688 bytes)",
+        "phase5_benchmark_methodology.md": "VALID (9928 bytes)",
+        "phase5_scaling_event_count.png": "VALID (318083 bytes)",
+        "phase5_scaling_batch_size.png": "VALID (221031 bytes)",
+        "phase5_verification_ablation.png": "VALID (130142 bytes)"
+      }
+    }
+  },
+  "security_boundary_notice": "This validation confirms the mathematical, cryptographic, and structural integrity of the local MedTrustEdge Phase 5 blockchain ledger. The implementation runs single-node in-memory Python data structures. It does NOT implement distributed consensus, P2P network gossip, or external Byzantine fault tolerance."
+}
