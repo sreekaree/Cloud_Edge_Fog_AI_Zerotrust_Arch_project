@@ -1,8 +1,9 @@
-"""MedTrustEdge Phase 5 Blockchain Package.
+"""MedTrustEdge Phase 5 & Phase 6 Blockchain Package.
 
 Provides event adaptation, canonical serialization, SHA-256 payload hashing,
 binary Merkle trees with inclusion proofs, block models, sequential blockchain ledger,
-and cryptographic tamper verification.
+cryptographic tamper verification, centralized configuration, and independent
+asymmetric/symmetric checkpoint signing.
 """
 from .block import (
     Block,
@@ -45,6 +46,25 @@ from .verifier import (
     ChainVerifier,
     VerificationResult,
 )
+from .config import (
+    BlockchainConfig,
+    ConfigValidationError,
+    load_blockchain_config,
+)
+from .checkpoint import (
+    CheckpointError,
+    CheckpointKeyError,
+    CheckpointSignatureError,
+    CheckpointValidationError,
+    LedgerCheckpoint,
+    create_checkpoint,
+    generate_ed25519_keypair,
+    generate_hmac_key,
+    sign_checkpoint_ed25519,
+    sign_checkpoint_hmac,
+    verify_checkpoint,
+    verify_ledger_against_checkpoint,
+)
 
 __all__ = [
     # Event Adapter & Hashing
@@ -83,4 +103,21 @@ __all__ = [
     # Verification
     "ChainVerifier",
     "VerificationResult",
+    # Configuration (Phase 6)
+    "BlockchainConfig",
+    "ConfigValidationError",
+    "load_blockchain_config",
+    # Checkpoint (Phase 6)
+    "CheckpointError",
+    "CheckpointKeyError",
+    "CheckpointSignatureError",
+    "CheckpointValidationError",
+    "LedgerCheckpoint",
+    "create_checkpoint",
+    "generate_ed25519_keypair",
+    "generate_hmac_key",
+    "sign_checkpoint_ed25519",
+    "sign_checkpoint_hmac",
+    "verify_checkpoint",
+    "verify_ledger_against_checkpoint",
 ]

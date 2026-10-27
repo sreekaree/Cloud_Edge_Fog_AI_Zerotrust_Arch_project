@@ -1,0 +1,50 @@
+# MedTrustEdge Phase 6 — Centralized Blockchain Configuration
+# Governs ledger parameters, event adapter settings, verification depth, 
+# benchmarking thresholds, cryptographic checkpointing, and output isolation.
+
+version: "1.0"
+
+# Ledger data structure and mempool batching parameters
+ledger:
+  batch_size: 5
+  schema_version: "1.0"
+  genesis_previous_hash: "0000000000000000000000000000000000000000000000000000000000000000"
+  duplicate_policy: "REJECT"  # Options: REJECT, WARN_AND_SKIP
+
+# Provenance artifact input paths (relative to repository root)
+artifacts:
+  phase4_trust_trace_path: "results/phase4/phase4_trust_trace.csv"
+  phase2_security_events_path: "results/zerotrust/zerotrust_security_events.csv"
+  phase3a_dataset_path: "results/ai/phase3a_iomt_anomaly_dataset.csv"
+  phase3b_predictions_path: "results/ai/phase3b_predictions.csv"
+  phase5_baseline_ledger_path: "results/phase5/phase5_baseline_ledger.json"
+
+# Verification engine integrity check controls
+verification:
+  verify_merkle_roots: true
+  verify_inclusion_proofs: true
+  verify_header_continuity: true
+  verify_timestamps_monotonic: true
+  verify_payload_hashes: true
+
+# Benchmarking framework repetitions and scaling sweeps
+benchmarking:
+  baseline_repetitions: 30
+  synthetic_small_repetitions: 20
+  synthetic_large_repetitions: 10
+  scaling_event_counts: [25, 50, 100, 250, 500, 1000]
+  ablation_batch_sizes: [1, 2, 5, 10, 25, 50]
+
+# Independent cryptographic checkpointing parameters (Phase 6 Hardening)
+checkpoint:
+  enabled: true
+  algorithm: "Ed25519"  # Primary: Ed25519; Fallback: HMAC-SHA256
+  key_id: "edge-gateway-alpha-01"
+  key_env_var: "MEDTRUST_CHECKPOINT_KEY"
+  pubkey_env_var: "MEDTRUST_CHECKPOINT_PUBKEY"
+  external_notary_url: ""  # Optional external anchoring endpoint
+
+# Phase 6 output directory isolation
+output:
+  base_dir: "results/phase6"
+  per_run_dir_prefix: "run_"

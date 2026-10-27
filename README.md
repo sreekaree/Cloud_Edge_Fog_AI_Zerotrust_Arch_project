@@ -183,3 +183,59 @@ Outputs written to `results/phase4/` and `plots/phase4/`:
 - `plots/phase4/phase4_trust_trajectories.png` (Continuous trust score trajectory visualizations)
 
 
+
+## Phase 5 — Blockchain Audit Ledger
+
+Phase 5 introduces an immutable, cryptographically verifiable audit ledger for sealing dynamic trust transitions and Zero Trust policy events from Phases 1–4. Using deterministic canonical serialization, SHA-256 event payload hashing, binary Merkle trees, and hash-pointer linkage, Phase 5 guarantees tamper-evident provenance across healthcare IoMT events.
+
+### Architectural Features:
+- **Event Adaptation & RFC 8785 Canonical JSON:** Ingests all 21 Phase 4 dynamic trust trace fields, joined strictly on the 16-hex character `record_id` with Phase 2 audit timestamps. Payload serialization enforces sorted keys and compact delimiters.
+- **Binary Merkle Trees & Inclusion Proofs:** Computes balanced Merkle roots with terminal leaf duplication for odd node counts. Provides compact logarithmic inclusion proofs ($O(\log_2 B)$) verifying event membership in sealed blocks.
+- **Sequential Hash-Linked Ledger:** Genesis block (height 0, 64-zero previous hash, empty root) followed by sequentially sealed blocks with configurable batch size $B$ (default $B=5$).
+- **Chain Verifier & Forensic Attribution:** Complete multi-check validation engine inspecting Genesis parameters, block indices, header hashes, previous hash continuity, payload hashes, and Merkle inclusion proofs.
+- **Adversarial Tamper Detection Suite:** Evaluates 8 distinct attack scenarios (payload alteration, hash modification, header tampering, broken previous-block pointers, event reordering, block swapping, event deletion, and block deletion). All 8 attacks are detected with 100.0% precision.
+
+> [!IMPORTANT]
+> **Single-Node Audit Ledger Scope:**
+> Phase 5 implements a local, in-memory Python hash-linked audit ledger. It demonstrates mathematical proof-of-immutability and tamper detection. It does **not** implement distributed consensus (PoW/PoS/PBFT), P2P gossip networks, or multi-node Byzantine fault tolerance.
+
+Run Phase 5 experiments:
+```bash
+# Tamper detection experiments (8 attack scenarios)
+python experiments/run_phase5_tamper_experiments.py
+
+# Multi-repetition performance benchmarking and scaling
+python experiments/run_phase5_performance_benchmarks.py
+
+# Phase 5 validation runner
+python experiments/run_phase5_final_validation.py
+```
+
+Outputs written to `results/phase5/`:
+- `phase5_baseline_ledger.json` (Sealed ledger: 6 blocks, 25 events, B=5)
+- `phase5_tamper_detection_report.csv` & `summary.json` (8/8 attacks detected)
+- `phase5_performance_benchmarks.csv` & `summary.json` (68 benchmark records)
+- Diagnostic plots: `phase5_scaling_event_count.png`, `phase5_scaling_batch_size.png`, `phase5_verification_ablation.png`
+
+## Phase 6 — Final Validation, Security Hardening, and Integration
+
+Phase 6 finalizes the MedTrustEdge architecture by hardening the audit ledger against whole-chain rewrite attacks, centralizing configuration, verifying cross-phase lineage, and establishing automated 10-gate validation.
+
+### Hardening Features:
+- **Centralized YAML Configuration:** Operational parameters are centralized in `config/blockchain_config.yaml` with strict dataclass type validation (`src/blockchain/config.py`). Rejects invalid parameters fail-fast.
+- **External Cryptographic Checkpoints (`src/blockchain/checkpoint.py`):** Solves the single-node whole-chain fork substitution vulnerability. Anchors ledger tips using RFC 8032 Ed25519 asymmetric digital signatures (256-bit seed, Edwards25519 curve) and HMAC-SHA256 symmetric MACs.
+- **10-Gate Validation Runner (`experiments/run_phase6_final_validation.py`):** Automated end-to-end audit verifying baseline hashes (Gate 1), configuration (Gate 2), event adaptation (Gate 3), ledger construction (Gate 4), Merkle proofs (Gate 5), tamper detection (Gate 6), checkpoint security (Gate 7), pipeline lineage (Gate 8), run isolation (Gate 9), and performance consistency (Gate 10).
+- **Run Isolation & Immutable Manifests:** Every Phase 6 validation execution writes to an isolated directory (`results/phase6/run_<timestamp>_<id>/`) containing an immutable `run_manifest.json` and a comprehensive Markdown report.
+- **Unbroken Pipeline Lineage:** Preserves all seven frozen Phase 1–4 golden baseline SHA-256 hashes and confirms 100% record ID derivation continuity from Phase 2 through Phase 6.
+
+### Run Verification:
+```powershell
+# Run Phase 6 unit and integration tests (20 tests)
+python -m unittest discover -s tests -p "test_phase6_*.py" -v
+
+# Run the complete MedTrustEdge test suite (115 tests across Phases 1-6)
+python -m unittest discover -s tests -v
+
+# Execute the Phase 6 10-Gate Validation Runner
+python experiments/run_phase6_final_validation.py
+```
