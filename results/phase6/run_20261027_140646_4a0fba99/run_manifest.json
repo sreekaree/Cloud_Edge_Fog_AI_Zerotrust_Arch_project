@@ -1,0 +1,93 @@
+{
+  "run_id": "run_20261027_140646_4a0fba99",
+  "execution_timestamp_utc": "2026-10-27T14:06:47.453861+00:00",
+  "git_metadata": {
+    "commit": "6cdbfedb2deb9a725fe43598dea397f6afefe9ac",
+    "branch": "phase6-final-validation",
+    "is_dirty": "true"
+  },
+  "environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "python_version": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+    "executable": "C:\\Users\\Ria\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+  },
+  "input_hashes": {
+    "src/zerotrust/dynamic_trust.py": "234e42819f60678ffec4209a240cd1540401d8b7a2383296d25761ee477ede7b",
+    "results/zerotrust/zerotrust_security_events.csv": "be661040b7eb0aba74a098195075c96af11d7fbc1319882a9b7fd7119ed5238b",
+    "results/ai/phase3a_iomt_anomaly_dataset.csv": "284b1b5933c86f0fffd5a912a4ee3c2f019585b441c4b67097e04824d949cdd4",
+    "results/ai/phase3b_predictions.csv": "f2fb282a417d3dbc53c31dde9260961fd4b6c3a7d425d55385023ebfb83a81e6",
+    "results/phase4/phase4_trust_trace.csv": "c214728a41f7dacad9df105128b0a3ea686cf8be76646727fd12381c5c6e428d",
+    "results/phase4/phase4_ablation_metrics.csv": "de5b7fbc0a16571f7dede132be2865f5c58c35bc3de01cbe74b112716474a809",
+    "tests/test_phase4_dynamic_trust.py": "5fb37120d487e5b1d6e8609c0c9031cb2bb354957a7dae35206c22466be1f761"
+  },
+  "configuration": {
+    "version": "1.0",
+    "ledger": {
+      "batch_size": 5,
+      "schema_version": "1.0",
+      "genesis_previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "duplicate_policy": "REJECT"
+    },
+    "artifacts": {
+      "phase4_trust_trace_path": "results/phase4/phase4_trust_trace.csv",
+      "phase2_security_events_path": "results/zerotrust/zerotrust_security_events.csv",
+      "phase3a_dataset_path": "results/ai/phase3a_iomt_anomaly_dataset.csv",
+      "phase3b_predictions_path": "results/ai/phase3b_predictions.csv",
+      "phase5_baseline_ledger_path": "results/phase5/phase5_baseline_ledger.json"
+    },
+    "verification": {
+      "verify_merkle_roots": true,
+      "verify_inclusion_proofs": true,
+      "verify_header_continuity": true,
+      "verify_timestamps_monotonic": true,
+      "verify_payload_hashes": true
+    },
+    "benchmarking": {
+      "baseline_repetitions": 30,
+      "synthetic_small_repetitions": 20,
+      "synthetic_large_repetitions": 10,
+      "scaling_event_counts": [
+        25,
+        50,
+        100,
+        250,
+        500,
+        1000
+      ],
+      "ablation_batch_sizes": [
+        1,
+        2,
+        5,
+        10,
+        25,
+        50
+      ]
+    },
+    "checkpoint": {
+      "enabled": true,
+      "algorithm": "Ed25519",
+      "key_id": "edge-gateway-alpha-01",
+      "key_env_var": "MEDTRUST_CHECKPOINT_KEY",
+      "pubkey_env_var": "MEDTRUST_CHECKPOINT_PUBKEY",
+      "external_notary_url": ""
+    },
+    "output": {
+      "base_dir": "results/phase6",
+      "per_run_dir_prefix": "run_"
+    }
+  },
+  "gates_summary": {
+    "gate_01_frozen_artifact_hashes": true,
+    "gate_02_centralized_configuration": true,
+    "gate_03_event_adaptation_canonical": true,
+    "gate_04_sequential_ledger_construction": true,
+    "gate_05_merkle_tree_inclusion_proofs": true,
+    "gate_06_adversarial_tamper_detection": true,
+    "gate_07_cryptographic_checkpoint_hardening": true,
+    "gate_08_cross_phase_lineage": true,
+    "gate_10_performance_documentation_audit": true,
+    "gate_09_run_isolation_manifest": true
+  },
+  "overall_status": "SUCCESS"
+}
